@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calcular Formula Molecular</title>
+	<style type="text/css">
+	@import url(https://fonts.googleapis.com/css?family=Roboto:400,300,700,100);
+
+		*{
+			font-family: 'Roboto', sans-serif;
+			-webkit-font-smoothing: antialiased;
+		}
+
+		#bg{
+			margin: 0;
+			padding: 0;
+			background: linear-gradient(to bottom, rgba(44,61,81,0.8) 0%, rgba(44,61,81,0.9) 100%), url('imgs/bg.jpg');
+			background-size: cover;
+			background-repeat: no-repeat;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+		}
+
+		.wrapper{
+			position: relative;
+			bottom: 50%;
+			transform: translateY(150%);
+			/*background-color: rgba(231,76,60, 0.5);*/
+			width: 50%;
+			display: block;
+			margin: 0 auto;
+			padding: 20px;
+			box-sizing: border-box;
+			border-radius: 10px;
+			}
+
+		h1{
+			/*text-transform: uppercase;*/
+			color: white;
+			margin: 0;
+			margin-bottom: 20px;
+			text-align: center;
+			font-size: 32pt;
+			text-shadow: 0 3px 4px #111;
+		}
+
+		.controls{
+			text-align: center;
+		}
+
+		#input{
+			width: 230px;
+			height: 40px;
+			border-radius: 4px;
+			border: 3px solid #eee;
+			padding: 5px 10px;
+			font-size: 14pt;
+			display: inline-block;
+			margin: 0 auto;
+			box-sizing: border-box;
+		}
+
+		#info, #geralinfo{
+			width: 40px;
+			height: 40px;
+			padding: 5px 10px;
+			border: 2px solid #eee;
+			border-radius: 4px;
+			font-size: 14pt;
+			font-weight: bold;
+			color: white;
+			display: inline-block;
+			background-color: #E74C3C;
+			outline: none;
+			cursor: pointer;
+		}
+
+		#info:active, #geralinfo:active{
+			background-color: #B83C30;
+		}
+
+		#geralinfo{
+			position: absolute;
+			top: 20px;
+			right: 20px;
+
+			width: 120px;
+			font-weight: normal;
+			font-size: 14pt;
+		}
+
+		.infobox{
+			right: 205px;
+			position: absolute;
+			display: none;
+			margin: 5px auto;
+			width: 230px;
+			padding: 10px;
+			font-size: 10pt;
+			border-radius: 4px;
+			background-color: #E74C3C;
+			color: white;
+			box-sizing: border-box;
+		}
+
+		#geralinfobox{
+			right: 20px;
+			top: 65px;
+		}
+
+		#geralinfobox hr{
+			width: 50%;
+			border: 1px solid #eee;
+		}
+
+		.instr{
+			list-style-type: none;
+		}
+
+
+		.elem{
+			background-color: #B83C30;
+			padding: 0 5px;
+			width: 30px;
+			display: inline-block;
+			box-sizing: border-box;
+		}
+
+		#texto{
+			text-align: center;
+			color: white;
+			display: block;
+			font-weight: bold;
+			font-size: 18pt;
+			width: 230px;
+			height: 40px;
+			margin: 10px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id='bg'>
+		<button id='geralinfo' onclick='showGeralInfo()'>Como Usar</button>
+		<div class="infobox" id='geralinfobox'>
+				Insira a fórmula molecular do composto, com seus átomos separados por espaços, da seguinte forma.
+				<hr>
+				<center><b>C3 O2 He5</b></center>
+				<hr>
+				Isso irá representar a fórmula <b>C<sub>3</sub>O<sub>2</sub>He<sub>5</sub></b>.
+			</div>
+
+		<div class="wrapper">
+			<h1>Cálculo Molecular</h1>
+			<div class="controls">
+				<input type="text" id='input' oninput='calcular()'> <button id='info' onclick='showInfo()'>?</button>
+			</div>
+			<div class="infobox" id='infobox'>
+			</div>
+			<div id='texto'></div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src='js/jqueyr.js'></script>
+<script type="text/javascript" src='js/app.js'></script>
+</html>
