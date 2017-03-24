@@ -1,27 +1,31 @@
 function calcular(){
+	// Pega a formula do input
 	var formula = $("#input").val();
+	// Divide a entrada em moleculas, e.g: "C O2" vira ["C", "O2"]
 	var moleculas = formula.split(" ");
+	// var decl
 	var total = 0;
 	var info = `<ul class='instr'>`;
+	// GET request para pegar os dados do arquivo JSON
 	$.getJSON( "js/data.json", function( data ) {
+		/* GET START */
 		moleculas.forEach(item => {
-		let mol = getMol(item);
-		if(mol != undefined){
-			let element = acharElement(data.elements, mol.atom);
-			total += element.atomic_mass * mol.num;
-			info += `<li>
-			<span class='elem'>${element.symbol}</span>
-			${parseFloat(element.atomic_mass).toFixed(2)}
-			* ${mol.num} = ${parseFloat(mol.num * element.atomic_mass).toFixed(2)}</li>`;
-		}
-	});
-	info += "<li><b>Total:</b> " + parseFloat(total).toFixed(2) + "</ul>";
-	$("#texto").html("MM = " + parseFloat(total).toFixed(2));
-	$("#infobox").html(info);
-
-
-
-
+			// retorna um objeto {atom, num}
+			let mol = getMol(item); // 
+			// checando por erro de sintaxe
+			if(mol != undefined){
+				let element = acharElement(data.elements, mol.atom);
+				total += element.atomic_mass * mol.num;
+				info += `<li>
+					<span class='elem'>${element.symbol}</span>
+					${parseFloat(element.atomic_mass).toFixed(2)}
+					* ${mol.num} = ${parseFloat(mol.num * element.atomic_mass).toFixed(2)}</li>`;
+			}
+		});
+		info += "<li><b>Total:</b> " + parseFloat(total).toFixed(2) + "</ul>";
+		$("#texto").html("MM = " + parseFloat(total).toFixed(2));
+		$("#infobox").html(info);
+		/* GET END */
 	});
 }
 
@@ -55,6 +59,7 @@ function getMol( molecula ){
 			num: 1
 		}
 	}
+	// "O22".length > 2
 	for(var i = 0; i < molecula.length; i++ ){
 		if(!$.isNumeric(molecula[i]) && $.isNumeric(molecula[i+1])){
 			return {
